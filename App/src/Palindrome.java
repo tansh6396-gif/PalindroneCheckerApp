@@ -1,34 +1,42 @@
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 /**
  * ==========================================================
- * MAIN CLASS - UseCase5PalindromeCheckerApp
+ * MAIN CLASS - UseCase6PalindromeCheckerApp
  * ==========================================================
- * * Use Case 5: Stack Based Palindrome Checker
+ * * Use Case 6: Queue + Stack Fairness Check
 
  */
 public class Palindrome {
 
-
+    /**
+     * Application entry point for UC6.
+     * *
+     */
     public static void main(String[] args) {
+        // Define the input string to validate
+        String input = "civic";
 
-        String input = "noon";
 
+        Queue<Character> queue = new LinkedList<>();
 
         Stack<Character> stack = new Stack<>();
 
 
         for (char c : input.toCharArray()) {
+            queue.add(c);
             stack.push(c);
         }
 
-        // Assume palindrome initially.
+
         boolean isPalindrome = true;
 
 
-        for (char c : input.toCharArray()) {
+        while (!queue.isEmpty()) {
 
-            if (c != stack.pop()) {
+            if (!queue.poll().equals(stack.pop())) {
                 isPalindrome = false;
                 break;
             }
