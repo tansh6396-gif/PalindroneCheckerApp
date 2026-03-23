@@ -1,47 +1,43 @@
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * ==========================================================
- * MAIN CLASS - UseCase6PalindromeCheckerApp
+ * MAIN CLASS - UseCase7PalindromeCheckerApp
  * ==========================================================
- * * Use Case 6: Queue + Stack Fairness Check
-
- */
+ * * Use Case 7: Deque Based Optimized Palindrome Checker
+*/
 public class Palindrome {
 
-    /**
-     * Application entry point for UC6.
-     * *
+    /*
+     * Application entry point for UC7.
+
      */
     public static void main(String[] args) {
-        // Define the input string to validate
-        String input = "civic";
+
+        String input = "refer";
 
 
-        Queue<Character> queue = new LinkedList<>();
-
-        Stack<Character> stack = new Stack<>();
+        Deque<Character> deque = new ArrayDeque<>();
 
 
         for (char c : input.toCharArray()) {
-            queue.add(c);
-            stack.push(c);
+            deque.addLast(c);
         }
 
 
         boolean isPalindrome = true;
 
 
-        while (!queue.isEmpty()) {
+        while (deque.size() > 1) {
+            Character first = deque.removeFirst();
+            Character last = deque.removeLast();
 
-            if (!queue.poll().equals(stack.pop())) {
+            if (!first.equals(last)) {
                 isPalindrome = false;
                 break;
             }
         }
-
 
         System.out.println("Input : " + input);
         System.out.println("Is Palindrome? : " + isPalindrome);
